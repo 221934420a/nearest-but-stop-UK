@@ -1,0 +1,13 @@
+{
+  "name": "nearby-bus-api",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/functions/*.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.7.2"
+  }
+}

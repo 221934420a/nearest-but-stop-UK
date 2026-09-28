@@ -1,15 +1,15 @@
 import type { BusStop, Departure } from './types'
 
-// Requests go through the same-origin Vite proxy in development. Production
-// deployments should route `/bustimes/*` to bustimes.org as well.
-const API = '/bustimes'
+// Vite proxies this route locally; Azure Static Web Apps maps it to the
+// same-origin Function in /api during deployment.
+const API = '/api/bustimes'
 
 async function fetchBustimes(url: string, signal?: AbortSignal) {
   try {
     return await fetch(url, { signal, headers: { Accept: 'application/json' } })
   } catch (error) {
     if (error instanceof DOMException && error.name === 'AbortError') throw error
-    throw new Error('Could not connect to bustimes.org. Restart the development server to apply its proxy settings. Production deployments also need a /bustimes reverse proxy.')
+    throw new Error('Could not connect to the bus data service. Check the API proxy deployment and try again.')
   }
 }
 

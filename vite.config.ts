@@ -6,11 +6,11 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     proxy: {
-      '/bustimes': {
+      '/api/bustimes': {
         target: 'https://bustimes.org',
         changeOrigin: true,
         secure: true,
-        rewrite: (path) => path.replace(/^\/bustimes/, ''),
+        rewrite: (path) => path.replace(/^\/api\/bustimes/, ''),
       },
     },
   },

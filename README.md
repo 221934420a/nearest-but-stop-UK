@@ -17,4 +17,4 @@ Use `localhost` or serve the site over HTTPS so the browser can offer location a
 - Stop departures: `https://bustimes.org/stops/{ATCO_CODE}/times.json` (`{ times: [...] }` response).
 - Map tiles: OpenStreetMap.
 
-During development, Vite proxies `/bustimes/*` to bustimes.org to avoid browser CORS restrictions. In production, configure the same `/bustimes/*` reverse proxy on the hosting server (with suitable caching and attribution); static hosting alone cannot provide that proxy.
+During development, Vite proxies `/api/bustimes/*` to bustimes.org. For Azure Static Web Apps, the included Azure Function at `api/src/functions/bustimes.js` provides the production proxy and avoids browser CORS restrictions. The deployment pipeline must set `api_location: api` and `output_location: dist` so the Function and `public/staticwebapp.config.json` are published with the site. If using the Azure Static Web Apps GitHub Action, set those values in its workflow. If the site is hosted on Azure App Service or Storage static website instead, this Function must be deployed separately and routed to `/api/bustimes/*`.
